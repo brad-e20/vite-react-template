@@ -171,7 +171,7 @@ const tankSlides: SlideData[] = [
 ];
 
 function App() {
-  const [showNames, setShowNames] = useState(true);
+  const [showNames, setShowNames] = useState(false);
 
   return (
     <div className="fish-tank-app">
