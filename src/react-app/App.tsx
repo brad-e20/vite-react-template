@@ -1,5 +1,6 @@
 // src/App.tsx
 
+import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, Zoom, Keyboard } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
@@ -170,6 +171,8 @@ const tankSlides: SlideData[] = [
 ];
 
 function App() {
+  const [showNames, setShowNames] = useState(true);
+
   return (
     <div className="fish-tank-app">
       <Swiper
@@ -211,9 +214,20 @@ function App() {
                 {slide.isTitle ? (
                   <div className="title-content">
                     <h1 className="tank-title">{slide.species}</h1>
+                    <div className="toggle-container">
+                      <span className="toggle-label">Show Names</span>
+                      <label className="toggle-switch">
+                        <input 
+                          type="checkbox"
+                          checked={showNames}
+                          onChange={() => setShowNames(!showNames)}
+                        />
+                        <span className="slider"></span>
+                      </label>
+                    </div>
                   </div>
                 ) : (
-                  <h2 className="fish-species">{slide.species}</h2>
+                  showNames && <h2 className="fish-species">{slide.species}</h2>
                 )}
               </div>
             </div>
