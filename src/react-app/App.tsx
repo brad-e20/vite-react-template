@@ -1,7 +1,7 @@
 // src/App.tsx
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, Zoom } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay, Zoom, Keyboard } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 import "./App.css";
 
@@ -173,11 +173,15 @@ function App() {
   return (
     <div className="fish-tank-app">
       <Swiper
-        modules={[Navigation, Pagination, Autoplay, Zoom]}
+        modules={[Navigation, Pagination, Autoplay, Zoom, Keyboard]}
         spaceBetween={0}
         slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
+        keyboard={{
+          enabled: true,
+          onlyInViewport: true,
+        }}
         zoom={{
           maxRatio: 3,
           minRatio: 1,
