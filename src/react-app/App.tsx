@@ -187,6 +187,9 @@ function App() {
           minRatio: 1,
           toggle: true,
         }}
+        touchStartPreventDefault={false}
+        simulateTouch={true}
+        allowTouchMove={true}
         // autoplay={{
         //   delay: 4000,
         //   disableOnInteraction: false,
