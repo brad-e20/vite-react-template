@@ -1,7 +1,7 @@
 // src/App.tsx
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay, Zoom } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 import "./App.css";
 
@@ -173,11 +173,16 @@ function App() {
   return (
     <div className="fish-tank-app">
       <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
+        modules={[Navigation, Pagination, Autoplay, Zoom]}
         spaceBetween={0}
         slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
+        zoom={{
+          maxRatio: 3,
+          minRatio: 1,
+          toggle: true,
+        }}
         // autoplay={{
         //   delay: 4000,
         //   disableOnInteraction: false,
@@ -188,11 +193,13 @@ function App() {
         {tankSlides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <div className={`fish-slide ${slide.isTitle ? 'title-slide' : ''}`}>
-              <img 
-                src={slide.image} 
-                alt={slide.species}
-                className="fish-image"
-              />
+              <div className="swiper-zoom-container">
+                <img 
+                  src={slide.image} 
+                  alt={slide.species}
+                  className="fish-image"
+                />
+              </div>
               <div className="fish-overlay">
                 {slide.isTitle ? (
                   <div className="title-content">
