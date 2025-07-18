@@ -89,6 +89,10 @@ html, body {
 
 .title-content {
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .tank-title {
@@ -100,6 +104,21 @@ html, body {
   letter-spacing: 4px;
   margin: 0 0 1rem 0;
   text-transform: uppercase;
+  -webkit-text-stroke: 2px white;
+}
+
+.tank-logo {
+  max-width: 300px;
+  max-height: 200px;
+  width: auto;
+  height: auto;
+  filter: drop-shadow(3px 3px 12px rgba(0, 0, 0, 0.9));
+}
+
+.chilli-emoji {
+  font-size: 3rem;
+  color: #ff6347; /* Tomato color for the chilli emoji */
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
 }
 
 .tank-subtitle {
@@ -116,11 +135,15 @@ html, body {
 
 /* Toggle switch styles */
 .toggle-container {
+  position: fixed;
+  bottom: calc(80px + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin-top: 20px;
+  z-index: 1000;
 }
 
 .toggle-label {
@@ -258,14 +281,19 @@ input:checked + .slider:before {
     letter-spacing: 2px;
   }
   
+  .tank-logo {
+    max-width: 250px;
+    max-height: 150px;
+  }
+  
   .tank-subtitle {
     font-size: 1.4rem;
     letter-spacing: 2px;
   }
   
   .toggle-container {
+    bottom: calc(70px + env(safe-area-inset-bottom));
     gap: 12px;
-    margin-top: 16px;
   }
   
   .toggle-label {
@@ -323,14 +351,19 @@ input:checked + .slider:before {
     letter-spacing: 1px;
   }
   
+  .tank-logo {
+    max-width: 200px;
+    max-height: 120px;
+  }
+  
   .tank-subtitle {
     font-size: 1.1rem;
     letter-spacing: 1px;
   }
   
   .toggle-container {
+    bottom: calc(60px + env(safe-area-inset-bottom));
     gap: 10px;
-    margin-top: 12px;
   }
   
   .toggle-label {

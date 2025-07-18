@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, Zoom, Keyboard } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 import "./App.css";
+import chillisLogo from './assets/chillis.png';
 
 interface SlideData {
   id: number;
@@ -19,7 +20,7 @@ const tankSlides: SlideData[] = [
   {
     id: 1,
     type: 'title',
-    species: "Chilli's 🌶️ Tank",
+    species: "🌶️🌶️🌶️",
     image: "https://assets.chillis-tank.uk/86E0DCD1-99B8-43E2-8D68-786041C169BB_1_105_c.jpeg",
     // image: "https://assets.chillis-tank.uk/4BF1F5AA-F7B2-4061-B5D8-03ECD9AD31CC_1_105_c.jpeg",
     isTitle: true
@@ -172,9 +173,28 @@ const tankSlides: SlideData[] = [
 
 function App() {
   const [showNames, setShowNames] = useState(false);
+  const [isOnTitleSlide, setIsOnTitleSlide] = useState(true);
+
+  const handleSlideChange = (swiper: any) => {
+    const realIndex = swiper.realIndex;
+    setIsOnTitleSlide(tankSlides[realIndex]?.isTitle || false);
+  };
 
   return (
     <div className="fish-tank-app">
+      {isOnTitleSlide && (
+        <div className="toggle-container">
+          <span className="toggle-label">Show Names</span>
+          <label className="toggle-switch">
+            <input 
+              type="checkbox"
+              checked={showNames}
+              onChange={() => setShowNames(!showNames)}
+            />
+            <span className="slider"></span>
+          </label>
+        </div>
+      )}
       <Swiper
         modules={[Navigation, Pagination, Autoplay, Zoom, Keyboard]}
         spaceBetween={0}
@@ -193,6 +213,7 @@ function App() {
         touchStartPreventDefault={false}
         simulateTouch={true}
         allowTouchMove={true}
+        onSlideChange={handleSlideChange}
         // autoplay={{
         //   delay: 4000,
         //   disableOnInteraction: false,
@@ -213,18 +234,8 @@ function App() {
               <div className="fish-overlay">
                 {slide.isTitle ? (
                   <div className="title-content">
-                    <h1 className="tank-title">{slide.species}</h1>
-                    <div className="toggle-container">
-                      <span className="toggle-label">Show Names</span>
-                      <label className="toggle-switch">
-                        <input 
-                          type="checkbox"
-                          checked={showNames}
-                          onChange={() => setShowNames(!showNames)}
-                        />
-                        <span className="slider"></span>
-                      </label>
-                    </div>
+                    <img src={chillisLogo} alt="Chilli's Tank" className="tank-logo" />
+                    <span className='chilli-emoji'>🌶️</span>
                   </div>
                 ) : (
                   showNames && <h2 className="fish-species">{slide.species}</h2>
